@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "env-cmd -f ./environment/.env.local nodemon ./dist/app.js",
-    "start-prod": "env-cmd -f ./environment/.env.local node ./dist/app.js"
+    "start-prod": "env-cmd -f ./environment/.env.local node ./dist/app.js",
+    "ts-compile": "tsc --w"
   },
   "author": "@harshitScript",
   "license": "ISC",
