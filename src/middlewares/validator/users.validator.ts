@@ -13,7 +13,7 @@ export const createUserValidator: express.RequestHandler<{}, UserInterfaces.Crea
         confirmPassword: joi.string().required().pattern(password).label('confirmPassword')
     })
     const errors = createUserValidationSchema.validate(req.body);
-    if (errors) {
+    if (errors.error) {
         return res.status(400).json({ message: 'Invalid values' })
     }
     next();
