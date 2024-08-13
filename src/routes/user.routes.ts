@@ -4,7 +4,7 @@ import * as UserValidators from "../middlewares/validator/users.validator";
 
 const userRouter = express.Router();
 
-//* POST user/create
+//* POST /user/sign-up
 userRouter.post('/sign-up', UserValidators.createUserValidator, UserControllers.createUserController);
 
 export default userRouter;
