@@ -28,7 +28,7 @@ export const createUserController: express.RequestHandler<{}, CreateUserResBody,
 export const getUserById: AuthenticatedRequestHandler = async (req, res, next) => {
     const { userId } = req.params;
     try {
-        const user = await User.findById(userId, { firstName: 1, lastName: 1, email: 1, phone: 1 });
+        const user = await User.findById(userId, { firstName: 1, lastName: 1, email: 1, phone: 1, isAdmin: 1 });
         if (!user) {
             return res.status(400).json({ message: 'User not Found.' })
         }
