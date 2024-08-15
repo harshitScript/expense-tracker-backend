@@ -1,9 +1,10 @@
 import express from "express";
 import joi from 'joi';
-import * as AuthInterfaces from "../../controllers/auth/auth.interfaces";
-import { email, password } from "../../utils/regexPatterns";
+import { loginReqBody, loginResBody } from "../interfaces";
+import { email, password } from "../utils/regexPatterns";
 
-export const loginValidator: express.RequestHandler<{}, AuthInterfaces.loginResBody, AuthInterfaces.loginResBody, {}> = (req, res, next) => {
+
+export const loginValidator: express.RequestHandler<{}, loginResBody, loginReqBody, {}> = (req, res, next) => {
     const loginValidationSchema = joi.object({
         email: joi.string().required().pattern(email).label('email'),
         password: joi.string().required().pattern(password).label('password'),

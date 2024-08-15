@@ -1,9 +1,9 @@
 import express from 'express';
-import * as UserInterfaces from './users.interfaces';
 import { User } from '../../models/users.model';
 import { generateHash } from '../../utils/hashOps';
+import { AuthenticatedRequest, AuthenticatedRequestHandler, CreateUserReqBody, CreateUserResBody } from '../../interfaces';
 
-export const createUserController: express.RequestHandler<{}, UserInterfaces.CreateUserResBody, UserInterfaces.CreateUserReqBody, {}> = async (req, res, next) => {
+export const createUserController: express.RequestHandler<{}, CreateUserResBody, CreateUserReqBody, {}> = async (req, res, next) => {
     try {
         const userValues = req.body;
         const passwordHash = generateHash(userValues.password, 10);
@@ -23,4 +23,17 @@ export const createUserController: express.RequestHandler<{}, UserInterfaces.Cre
         next(error)
         return 0
     }
-} 
+}
+
+export const getUserById: AuthenticatedRequestHandler = async (req, res, next) => {
+    const { userId } = req.params;
+    try {
+        const user = await User.findById(userId, { firstName: 1, lastName: 1, email: 1, phone: 1 });
+        if (!user) {
+            return res.status(400).json({ message: 'User not Found.' })
+        }
+        return res.status(200).json({ message: 'User Found', user })
+    } catch (error) {
+        return next(error);
+    }
+}

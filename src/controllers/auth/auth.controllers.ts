@@ -1,10 +1,10 @@
 import express from "express";
-import * as AuthInterfaces from './auth.interfaces';
 import { User } from "../../models/users.model";
 import { compareHash } from "../../utils/hashOps";
 import { generateJWT } from "../../utils/jwtOps";
+import { loginResBody } from "../../interfaces";
 
-export const loginController: express.RequestHandler<{}, AuthInterfaces.loginResBody, any, {}> = async (req, res, next) => {
+export const loginController: express.RequestHandler<{}, loginResBody, any, {}> = async (req, res, next) => {
     try {
         const { email, password } = req.body;
         const query = { email }
