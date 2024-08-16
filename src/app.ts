@@ -6,6 +6,7 @@ import userRouter from "./routes/user.routes";
 import notFoundMiddleware from "./middlewares/notFound.middleware";
 import errorHandlerMiddleware from "./middlewares/errorHandler.middleware";
 import authRouter from "./routes/auth.routes";
+import categoryRouter from "./routes/category.routes";
 
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
+app.use('/category', categoryRouter);
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware); //? Crash response sent from here.
 

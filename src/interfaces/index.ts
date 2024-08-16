@@ -6,6 +6,12 @@ export interface UserType {
     phone: string,
     email: string,
     password: string,
+    isAdmin: boolean
+}
+
+export interface CategoryType {
+    title: string;
+    description: string;
 }
 export interface AuthenticatedRequest extends Request {
     userId?: string; // userId is optional as it will be set later

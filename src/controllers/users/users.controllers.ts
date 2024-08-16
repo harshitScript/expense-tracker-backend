@@ -1,7 +1,7 @@
 import express from 'express';
 import { User } from '../../models/users.model';
 import { generateHash } from '../../utils/hashOps';
-import { AuthenticatedRequest, AuthenticatedRequestHandler, CreateUserReqBody, CreateUserResBody } from '../../interfaces';
+import { AuthenticatedRequestHandler, CreateUserReqBody, CreateUserResBody } from '../../interfaces';
 
 export const createUserController: express.RequestHandler<{}, CreateUserResBody, CreateUserReqBody, {}> = async (req, res, next) => {
     try {
