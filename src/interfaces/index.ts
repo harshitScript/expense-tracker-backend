@@ -23,7 +23,8 @@ export interface loginReqBody {
 export interface loginResBody {
     message: string,
     userId?: string,
-    authToken?: string
+    authToken?: string,
+    authTokenExpiry?: number
 }
 export interface CreateUserReqBody {
     firstName: string,

@@ -16,9 +16,10 @@ export const loginController: express.RequestHandler<{}, loginResBody, any, {}> 
         if (!isValidPassword) {
             return res.status(400).json({ message: 'Password verification failed.' });
         }
-        const authToken = generateJWT({ userId: `${user._id}` }, { expiresIn: '2 days' });
-        res.cookie('authToken', authToken, { expires: new Date(new Date().setDate(new Date().getDate() + 2)), httpOnly: true, secure: process.env.STATE === 'PROD' });
-        return res.status(200).json({ message: 'Login Successful.', userId: `${user._id}`, authToken });
+        const authTokenExpiry = new Date().setDate(new Date().getDate() + 2)
+        const authToken = generateJWT({ userId: `${user._id}` }, { expiresIn: authTokenExpiry });
+        res.cookie('authToken', authToken, { httpOnly: true, secure: process.env.STATE === 'PROD', maxAge: authTokenExpiry });
+        return res.status(200).json({ message: 'Login Successful.', userId: `${user._id}`, authToken, authTokenExpiry });
     } catch (error) {
         return next(error);
     }
