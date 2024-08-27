@@ -15,7 +15,7 @@ export const createCategoryController: AuthenticatedRequestHandler = async (req,
 export const getCategoriesController: AuthenticatedRequestHandler = async (_, res, next) => {
     try {
         const categories = await Category.find();
-        return res.status(200).json({ categories })
+        return res.status(200).json({ message: 'Categories fetched successfully.', categories })
     } catch (error) {
         next(error)
     }
