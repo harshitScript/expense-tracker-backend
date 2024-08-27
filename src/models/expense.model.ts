@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import { ExpenseType } from "../interfaces";
 
-const expenseSchema = new mongoose.Schema({
+const expenseSchema = new mongoose.Schema<ExpenseType>({
     title: { type: String, required: true },
     description: { type: String, required: true },
     amount: { type: Number, required: true },

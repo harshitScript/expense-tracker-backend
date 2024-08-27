@@ -10,8 +10,17 @@ export interface UserType {
 }
 
 export interface CategoryType {
+    _id?: string;
     title: string;
     description: string;
+}
+
+export interface ExpenseType {
+    title: string;
+    description: string;
+    amount: number;
+    category: string;
+    spentAt: Date;
 }
 export interface AuthenticatedRequest extends Request {
     userId?: string; // userId is optional as it will be set later
